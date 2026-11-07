@@ -1,0 +1,12 @@
+# Local secrets and machine-specific environment overrides
+.env
+.env.local
+.env.*.local
+
+# Runtime logs
+*.log
+work/
+outputs/
+*.zip
+mg-delivery-stage/
+mg-delivery-verify/
