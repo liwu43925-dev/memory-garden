@@ -96,3 +96,4 @@ export const anchorStyle=slot=>[
   `--mx:${slot.mx??slot.x}px`,`--my:${slot.my??slot.y}px`,`--mw:${slot.mw??slot.w}px`,
   `--art-scale:${slot.artScale||1}`,`--art-x:${slot.artX||0}%`,`--art-y:${slot.artY||0}%`
 ].join(';');
+

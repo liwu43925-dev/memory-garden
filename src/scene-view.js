@@ -9,7 +9,8 @@ const anchor=(slot,extra='')=>`${anchorStyle(slot)};${extra}`;
 const imageryButton=(mapping,label,file,cls,esc,point,scale=1)=>{
   const x=Math.round(point.x*DESIGN_CANVAS.width);
   const y=Math.round(point.y*DESIGN_CANVAS.height);
-  return `<button type="button" class="scene-hit crown-imagery ${cls}" data-action="open-imagery" data-id="${esc(mapping.imageryId)}" data-object="${esc(mapping.imageryId)}" data-record-id="${esc(mapping.sourceRecordId)}" aria-label="${esc(label)}" style="--x:${x}px;--y:${y}px;--mx:${x}px;--my:${y}px;--w:${Math.round(68*scale)}px;--mw:${Math.round(62*scale)}px;--art-scale:1.25;--art-x:0%;--art-y:3%">${art(file,'object-art')}<span class="scene-hit-label">${esc(label)}</span></button>`;
+  const action=cls==='flower'||cls==='petal'||cls==='leaf'?'open-photo':'open-imagery';
+  return `<button type="button" class="scene-hit crown-imagery ${cls}" data-action="${action}" data-id="${esc(mapping.imageryId)}" data-object="${esc(mapping.imageryId)}" data-record-id="${esc(mapping.sourceRecordId)}" aria-label="${esc(label)}" style="--x:${x}px;--y:${y}px;--mx:${x}px;--my:${y}px;--w:${Math.round(68*scale)}px;--mw:${Math.round(62*scale)}px;--art-scale:1.25;--art-x:0%;--art-y:3%">${art(file,'object-art')}<span class="scene-hit-label">${esc(label)}</span></button>`;
 };
 
 function recordCollection(records,layout,esc,currentDiscId){
@@ -18,7 +19,7 @@ function recordCollection(records,layout,esc,currentDiscId){
     <button type="button" class="collection-heading" data-action="open-collection" data-id="collection" data-collection aria-expanded="true">
       <span>记忆唱片</span><small>${records.length?records.length+' 张':'暂无唱片'}</small>
     </button>
-    ${records.length?`<div class="collection-slots">${records.slice(0,4).map((m,i)=>{const selected=m.imageryId===currentDiscId;return `<button type="button" class="collection-disc ${i===0?'first':''} ${selected?'is-selected':''}" data-action="open-imagery" data-id="${esc(m.imageryId)}" data-object="${esc(m.imageryId)}" data-record-id="${esc(m.sourceRecordId)}" aria-label="唱片：${esc(m.title)}，${esc(m.date||'日期未提供')}${selected?'，已装入留声机':''}" aria-pressed="${selected}">${art(ASSETS.audio.record,'disc-art')}<span>${esc(m.title)}</span><small>${selected?'已装入 · ':''}${esc(m.date||'日期未提供')}</small></button>`}).join('')}</div>`:'<p class="collection-empty">新增并确认音频后，唱片会收进这里。</p>'}
+    ${records.length?`<div class="collection-slots">${records.slice(0,4).map((m,i)=>{const selected=m.imageryId===currentDiscId;return `<button type="button" class="collection-disc ${i===0?'first':''} ${selected?'is-selected':''}" data-action="open-record" data-id="${esc(m.imageryId)}" data-object="${esc(m.imageryId)}" data-record-id="${esc(m.sourceRecordId)}" aria-label="唱片：${esc(m.title)}，${esc(m.date||'日期未提供')}${selected?'，已装入留声机':''}" aria-pressed="${selected}">${art(ASSETS.audio.record,'disc-art')}<span>${esc(m.title)}</span><small>${selected?'已装入 · ':''}${esc(m.date||'日期未提供')}</small></button>`}).join('')}</div>`:'<p class="collection-empty">新增并确认音频后，唱片会收进这里。</p>'}
   </section>`;
 }
 
