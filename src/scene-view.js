@@ -113,7 +113,7 @@ export function renderScene({state,header,icon,esc,detailPanel,modal}){
         </section>
       </div>
     </div>
-    <section class="scene-note card"><h1>${esc(name)}</h1><p>${maps.length?`演示数据：${photos.length} 个图片意象、${branches.length} 个心愿枝叶、${records.length} 张唱片。`:'当前关系组在此场景暂无已映射意象。'}</p><div class="scene-note-actions"><button type="button" class="text-button" data-why>为什么出现这个变化？</button><button type="button" class="text-button" data-quiet aria-pressed="${state.quiet===true}">${state.quiet?'唤醒桌宠':'让桌宠休眠'}</button></div></section>
+    <section class="scene-note card"><h1>${esc(name)}</h1><p>${maps.length?`演示数据：${photos.length} 个图片意象、${branches.length} 个心愿枝叶、${records.length} 张唱片。`:'当前关系组在此场景暂无已映射意象。'}</p><div class="scene-note-actions"><button type="button" class="text-button" data-why>为什么出现这个变化？</button><button type="button" class="text-button" data-open-reference-gallery>查看交互演示</button><button type="button" class="text-button" data-quiet aria-pressed="${state.quiet===true}">${state.quiet?'唤醒桌宠':'让桌宠休眠'}</button></div></section>
     ${audioPlayer(state,records,esc)}
     ${state.selected?detailPanel():''}${state.modal?modal():''}
   </main>`;
